@@ -10,6 +10,7 @@ tmp
 lib/
 logs
 precompile
+modules
 javadoc
 nbproject
 node_modules
