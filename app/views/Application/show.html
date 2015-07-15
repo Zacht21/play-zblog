@@ -1,0 +1,64 @@
+#{extends 'main.html' /}
+#{set title:post.title /}
+#{stylesheet 'blog-post.css' /}
+
+#{if flash.success}
+<p class="success">${flash.success}</p>
+#{/if}
+
+#{display post:post, as:'full' /}
+<div class="container">
+    <div class="row">
+        <div class="col-lg-8">
+            <div class="well">
+                <h4>Comentario del post</h4>
+
+            #{form @Application.postComment(post.id)}
+
+                #{ifErrors}
+                    <p class="error">
+                    ${errors[0]}
+                    </p>
+                #{/ifErrors}
+
+                <p>
+                    <label for="author">Tu usuario: </label>
+                    <input type="text" name="author" id="author" value="${params.author}"/>
+                </p>
+
+                <p>
+                    <label for="content">Tu mensaje: </label>
+                    <textarea class="form-control" rows="3">${params.content}</textarea>
+                </p>
+
+                <p>
+                    <label for="code">Inserte captcha: </label>
+                    <img src="@{Application.captcha(randomID)}"/>
+                    <br/>
+                    <input type="text" name="code" id="code" size="18" value=""/>
+                    <input type="hidden" name="randomID" value="${randomID}"/>
+                </p>
+
+                <p>
+                    <button type="submit" class="btn btn-primary">Enviar</button>
+                </p>
+            #{/form}
+
+                <script type="text/javascript" charset="${_response_encoding}">
+                    $(function () {
+                        // Expose the form
+                        $('form').click(function () {
+                            $('form').expose({api: true}).load();
+                        });
+
+                        // If there is an error, focus to form
+                        if ($('form .error').size()) {
+                            $('form').expose({api: true, loadSpeed: 0}).load();
+                            $('form input[type=text]').get(0).focus();
+                        }
+                    });
+                </script>
+            </div>
+        </div>
+    </div>
+</div>

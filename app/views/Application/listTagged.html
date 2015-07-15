@@ -1,0 +1,30 @@
+#{extends 'main.html' /}
+#{set title:'Posts tagged with ' + tag /}
+#{stylesheet 'blog-post.css'/}
+
+<div class="container">
+    <div class="row">
+        <div class="col-lg-8">
+
+        *{********* Title ********* }*
+
+        #{if posts.size() > 1}
+            <h1>There are ${posts.size()} posts tagged '${tag}'</h1>
+        #{/if}
+        #{elseif posts}
+            <h3>There is 1 post tagged '${tag}'</h3>
+        #{/elseif}
+        #{else}
+            <h3>No post tagged '${tag}'</h3>
+        #{/else}
+
+        *{********* Posts list *********}*
+
+            <div class="older-posts">
+            #{list items:posts, as:'post'}
+        #{display post:post, as:'teaser' /}
+    #{/list}
+            </div>
+        </div>
+    </div>
+</div>

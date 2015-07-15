@@ -1,0 +1,130 @@
+#{extends 'main.html' /}
+#{set title:'Home' /}
+<div class="container">
+    <div class="row">
+        <!-- Blog Entries Column -->
+        <div class="col-md-8">
+
+            <h1 class="page-header">
+                ${blogBaseline}
+            </h1>
+
+        #{if frontPost}
+            #{display post:frontPost, as:'home' /}
+            <hr>
+            #{if olderPosts.size()}
+
+                <div class="older-posts">
+                    <h3>Post anteriores <span class="from"></span></h3>
+                    #{list items:olderPosts, as:'oldPost'}
+                        #{display post:oldPost, as:'teaser' /}
+                    #{/list}
+                </div>
+
+            #{/if}
+        #{/if}
+
+        #{else}
+            <div class="empty">
+                No hay posts por el momento.
+            </div>
+        #{/else}
+
+        </div>
+
+        <!-- Blog Sidebar Widgets Column -->
+        <div class="col-md-4">
+
+            <!-- Blog Search Well -->
+            <div class="well">
+                <h4>Blog Search</h4>
+
+                <div class="input-group">
+                    <input type="text" class="form-control">
+                                    <span class="input-group-btn">
+                                        <button class="btn btn-default" type="button">
+                                            <span class="glyphicon glyphicon-search"></span>
+                                        </button>
+                                    </span>
+                </div>
+                <!-- /.input-group -->
+            </div>
+
+            <!-- Blog Categories Well -->
+            <div class="well">
+                <h4>Blog Categories</h4>
+
+                <div class="row">
+                    <div class="col-lg-6">
+                        <ul class="list-unstyled">
+                            <li><a href="#">Category Name</a>
+                            </li>
+                            <li><a href="#">Category Name</a>
+                            </li>
+                            <li><a href="#">Category Name</a>
+                            </li>
+                            <li><a href="#">Category Name</a>
+                            </li>
+                        </ul>
+                    </div>
+                    <!-- /.col-lg-6 -->
+                    <div class="col-lg-6">
+                        <ul class="list-unstyled">
+                            <li><a href="#">Category Name</a>
+                            </li>
+                            <li><a href="#">Category Name</a>
+                            </li>
+                            <li><a href="#">Category Name</a>
+                            </li>
+                            <li><a href="#">Category Name</a>
+                            </li>
+                        </ul>
+                    </div>
+                    <!-- /.col-lg-6 -->
+                </div>
+                <!-- /.row -->
+            </div>
+
+            <!-- Side Widget Well -->
+            <div class="well">
+                <h4>Side Widget Well</h4>
+
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Inventore, perspiciatis adipisci accusamus
+                    laudantium odit aliquam repellat tempore quos aspernatur vero.</p>
+            </div>
+
+        </div>
+
+    </div>
+    <!-- /.row -->
+
+    <hr>
+
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8">
+                <ul class="pager">
+                    <li class="previous">
+                        <a href="#">&larr; Older</a>
+                    </li>
+                    <li class="next">
+                        <a href="#">Newer &rarr;</a>
+                    </li>
+                </ul>
+                <hr>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- Footer -->
+    <footer>
+        <div class="row">
+            <div class="col-lg-12">
+                <p>Copyright &copy; <a href="@{Application.index()}">Zenbash</a> el zen del codigo</p>
+            </div>
+            <!-- /.col-lg-12 -->
+        </div>
+        <!-- /.row -->
+    </footer>
+</div>

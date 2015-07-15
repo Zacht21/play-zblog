@@ -1,0 +1,39 @@
+*{ Display a post in one of these modes: 'full', 'home' or 'teaser' }*
+#{stylesheet 'blog-post.css'/}
+<div class="container">
+    <div class="row">
+        <div class="col-lg-8">
+            <div class="post ${_as == 'teaser' ? 'teaser' : ''}">
+                <h1>
+                    <a href="@{Application.show(_post.id)}">${_post.title}</a>
+                </h1>
+
+
+                <div class="post-metadata">
+                    <p class="lead">by ${_post.author?.fullname}</p>
+
+                    <p><span class="glyphicon glyphicon-time"></span>${_post.postedAt.format('dd MMM yy')}</p>
+                    <hr>
+                #{elseif _post.tags}
+                    <span class="post-tags">
+                - Tagged
+                        #{list items:_post.tags, as:'tag'}
+                            <a href="@{Application.listTagged(tag)}">${tag}</a>${tag_isLast ? '' : ', '}
+                        #{/list}
+            </span>
+                #{/elseif}
+                </div>
+            #{if _as != 'teaser'}
+                <div class="post-content">
+                    <img class="img-responsive" src="http://placehold.it/900x300" alt="">
+                    <hr>
+                    <p>${_post.content.nl2br()}</p>
+                </div>
+            #{/if}
+                <a class="btn btn-primary" href="#">Leer mas <span class="glyphicon glyphicon-chevron-right"></span></a>
+
+            </div>
+        </div>
+    </div>
+</div>
+

@@ -1,0 +1,7 @@
+# Test data
+
+User(jhermosillo):
+    email:          jhermosillo.sa@gmail.com
+    password:       fenix13!#
+    fullname:       Jorge Hermosillo
+    isAdmin:        true
